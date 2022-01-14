@@ -12,14 +12,14 @@ function Home() {
         <Product 
           id={1}
           title="The Lean Startup"
-          price={29.99}
+          price={2.99}
           image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-          rating={2}
+          rating={3}
         />
         <Product 
           id={2}
           title="Kenwood Stand"
-          price={239.0}
+          price={239.99}
           image="https://images-na.ssl-images-amazon.com/images/I/81O%2BGNdkzKL._AC_SX450_.jpg"
           rating={4}
         />
