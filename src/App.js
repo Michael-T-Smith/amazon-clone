@@ -5,8 +5,7 @@ import Home from "./Components/Home";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Checkout from "./Components/Checkout";
 
