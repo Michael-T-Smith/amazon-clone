@@ -1,8 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../css/login.css';
+import { auth } from '../firebase';
 
 function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
+  const signIn = e => {
+    e.preventDefault();
+
+    //Firebase sign-in
+    auth.signInWithEmailAndPassword(email, password).then((auth) => {
+      if(auth){
+        navigate("/");
+      }
+    }).catch(error => alert(error.message));
+  }
+
+  const register = e => {
+    e.preventDefault();
+
+    //Firebase registration
+    auth.createUserWithEmailAndPassword(email, password).then((auth) => {
+      if(auth) {
+        navigate("/");
+      }
+    }).catch(error => alert(error.message));
+  }
+
   return (
   <div className="login">
     <Link to="/">
@@ -14,13 +41,13 @@ function Login() {
 
     <form action="">
       <h5>E-mail</h5>
-      <input type="text" />
+      <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
       <h5>Password</h5>
-      <input type="password" />
-      <button className="login__registerButton">Sign in</button>
+      <input type="password"  value={password} onChange={e => setPassword(e.target.value)} />
+      <button className="login__registerButton" onClick={signIn} type="submit">Sign in</button>
     </form>
     <p>THIS IS FOR TERMS AND CONDITIONS AGREEMENT PARAGRAPH</p>
-    <button className="login__signinButton">Create Amazon Account</button>
+    <button className="login__signinButton" onClick={register}>Create Amazon Account</button>
     </div>
   </div>
   );
